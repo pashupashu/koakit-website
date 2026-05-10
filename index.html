@@ -18,6 +18,7 @@
   --mid:#6B6860;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);
   --ff-d:'Cormorant Garamond',Georgia,serif;--ff-b:'Outfit',system-ui,sans-serif;
   --r:6px;--rl:14px;--rx:20px;
+  --max-w:1240px;
 }
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
 body{font-family:var(--ff-b);background:var(--ink);color:var(--sand);line-height:1.65;overflow-x:hidden;font-size:15px}
@@ -26,17 +27,22 @@ body{font-family:var(--ff-b);background:var(--ink);color:var(--sand);line-height
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
 
 /* ─── LAYOUT HELPERS ─── */
-.container{max-width:1080px;margin:0 auto;padding:0 36px}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 40px}
 @media(max-width:600px){.container{padding:0 20px}}
 .rule{width:100%;height:1px;background:var(--border);margin:0}
 .eyebrow{font-family:var(--ff-b);font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal)}
 
 /* ─── NAV ─── */
 nav{position:sticky;top:0;z-index:200;background:rgba(12,12,10,0.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:60px;display:flex;align-items:center}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1080px;margin:0 auto;padding:0 36px}
-.logo{font-family:var(--ff-d);font-size:21px;font-weight:600;letter-spacing:-0.01em;color:var(--sand);text-decoration:none;user-select:none}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:var(--max-w);margin:0 auto;padding:0 40px}
+.logo{font-family:var(--ff-d);font-size:21px;font-weight:600;letter-spacing:-0.01em;color:var(--sand);text-decoration:none;user-select:none;display:flex;align-items:center;gap:8px}
+.logo-icon{width:22px;height:22px;flex-shrink:0;opacity:0.9}
 .logo em{font-style:italic;color:var(--teal)}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-link{font-size:13px;font-weight:400;color:var(--mid);text-decoration:none;padding:6px 12px;border-radius:var(--r);transition:color .15s,background .15s}
+.nav-link:hover{color:var(--sand);background:rgba(255,255,255,0.05)}
 .nav-right{display:flex;align-items:center;gap:28px}
+@media(max-width:860px){.nav-links{display:none}}
 .nav-pulse{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--mid)}
 .pulse-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;animation:pulse 2.2s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(29,158,117,0.4)}50%{opacity:.5;box-shadow:0 0 0 4px rgba(29,158,117,0)}}
@@ -88,6 +94,30 @@ section{padding:100px 0;border-top:1px solid var(--border)}
 .sec-title{font-family:var(--ff-d);font-size:clamp(30px,4vw,46px);font-weight:500;letter-spacing:-0.025em;line-height:1.1;margin-bottom:12px}
 .sec-title em{font-style:italic;color:var(--teal)}
 .sec-sub{font-size:15px;color:var(--mid);font-weight:300;line-height:1.75;max-width:520px}
+
+/* ─── USE CASE STRIP ─── */
+.use-strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--ink2);padding:0}
+.use-strip-inner{display:grid;grid-template-columns:1fr 1px 1fr;max-width:var(--max-w);margin:0 auto;padding:0 40px}
+.use-col{display:flex;align-items:center;gap:18px;padding:28px 32px 28px 0}
+.use-col:last-child{padding:28px 0 28px 32px}
+.use-col-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.use-col-icon-t{background:var(--teal-l);border:1px solid var(--teal-b)}
+.use-col-icon-a{background:var(--amber-l);border:1px solid var(--amber-b)}
+.use-col-text{}
+.use-col-label{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px}
+.use-col-label-t{color:var(--teal)}
+.use-col-label-a{color:var(--amber)}
+.use-col-title{font-family:var(--ff-d);font-size:17px;font-weight:500;color:var(--sand);letter-spacing:-0.01em;margin-bottom:3px}
+.use-col-desc{font-size:12px;color:var(--mid);font-weight:300;line-height:1.55}
+.use-col-link{font-size:11px;color:var(--teal);text-decoration:none;margin-top:6px;display:inline-flex;align-items:center;gap:4px;opacity:0.8;transition:opacity .15s}
+.use-col-link:hover{opacity:1}
+.use-divider{width:1px;background:var(--border);align-self:stretch}
+@media(max-width:640px){
+  .use-strip-inner{grid-template-columns:1fr;padding:0 20px}
+  .use-divider{width:100%;height:1px}
+  .use-col{padding:24px 0}
+  .use-col:last-child{padding:24px 0}
+}
 
 /* ─── USP ─── */
 .usp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px}
@@ -239,7 +269,7 @@ section{padding:100px 0;border-top:1px solid var(--border)}
 
 /* ─── FOOTER ─── */
 footer{border-top:1px solid var(--border);padding:44px 0}
-.footer-inner{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;align-items:start;max-width:1080px;margin:0 auto;padding:0 36px}
+.footer-inner{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;align-items:start;max-width:var(--max-w);margin:0 auto;padding:0 40px}
 @media(max-width:720px){.footer-inner{grid-template-columns:1fr;gap:28px}}
 .footer-brand .logo{display:block;margin-bottom:10px}
 .footer-brand p{font-size:12px;color:var(--mid);line-height:1.7;font-weight:300;max-width:220px;margin-bottom:14px}
@@ -248,7 +278,7 @@ footer{border-top:1px solid var(--border);padding:44px 0}
 .footer-col h5{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);margin-bottom:14px}
 .footer-col a{display:block;font-size:13px;color:var(--sand2);text-decoration:none;margin-bottom:9px;transition:color .15s}
 .footer-col a:hover{color:var(--sand)}
-.footer-bottom{max-width:1080px;margin:32px auto 0;padding:20px 36px 0;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--mid)}
+.footer-bottom{max-width:var(--max-w);margin:32px auto 0;padding:20px 40px 0;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--mid)}
 .footer-stamp{display:flex;align-items:center;gap:6px}
 .stamp-dot{width:4px;height:4px;border-radius:50%;background:var(--teal)}
 
@@ -307,7 +337,23 @@ h1{animation:fadeUp .55s .12s ease both}
 <!-- ═══════════════ NAV ═══════════════ -->
 <nav>
   <div class="nav-inner">
-    <a href="#top" class="logo">Koa <em>Kit</em></a>
+    <a href="#top" class="logo">
+      <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="19" stroke="#1D9E75" stroke-width="1.5" opacity="0.5"/>
+        <path d="M20 30 C20 30 12 24 12 17 C12 12.5 15.5 9 20 9 C24.5 9 28 12.5 28 17 C28 24 20 30 20 30Z" fill="#1D9E75" opacity="0.15"/>
+        <path d="M20 9 C20 9 20 22 20 30" stroke="#1D9E75" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M20 17 C20 17 15 14 13 10" stroke="#1D9E75" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+        <path d="M20 20 C20 20 25 17 27 13" stroke="#1D9E75" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+        <path d="M20 23 C20 23 16 21 14 18" stroke="#1D9E75" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+      </svg>
+      Koa <em>Kit</em>
+    </a>
+    <nav class="nav-links">
+      <a href="#how" class="nav-link">How it works</a>
+      <a href="#kit" class="nav-link">The kit</a>
+      <a href="#pricing" class="nav-link">Pricing</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+    </nav>
     <div class="nav-right">
       <div class="nav-pulse">
         <div class="pulse-dot"></div>
@@ -376,6 +422,31 @@ h1{animation:fadeUp .55s .12s ease both}
     </div>
   </div>
 </section>
+
+<!-- ═══════════════ USE CASE STRIP ═══════════════ -->
+<div class="use-strip">
+  <div class="use-strip-inner">
+    <div class="use-col">
+      <div class="use-col-icon use-col-icon-t">🎯</div>
+      <div class="use-col-text">
+        <div class="use-col-label use-col-label-t">New Prospects</div>
+        <div class="use-col-title">Book meetings that cold email can't.</div>
+        <div class="use-col-desc">Send to target accounts that won't reply. A physical kit gets you in the room — a QR code gets them watching your pitch before you even call.</div>
+        <a href="#audiences" class="use-col-link">See how it works &rarr;</a>
+      </div>
+    </div>
+    <div class="use-divider"></div>
+    <div class="use-col use-col:last-child">
+      <div class="use-col-icon use-col-icon-a">🤝</div>
+      <div class="use-col-text">
+        <div class="use-col-label use-col-label-a">Existing Customers</div>
+        <div class="use-col-title">Retain the clients who already pay you.</div>
+        <div class="use-col-desc">Send on anniversaries, renewals, or referrals. A surprise gift keeps customers loyal, drives referrals, and turns happy clients into vocal advocates.</div>
+        <a href="#audiences" class="use-col-link">See how it works &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ═══════════════ WHY IT WORKS ═══════════════ -->
 <section id="why">
@@ -745,6 +816,27 @@ h1{animation:fadeUp .55s .12s ease both}
         </button>
         <div class="faq-a">Your company logo (PNG or SVG), your prospect list (CSV or Excel with names and shipping addresses), a message for the insert card (or let us write it), and a URL for the QR code. Takes about 5 minutes. We'll email you a design proof within 48 hours of receiving your assets.</div>
       </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can I cancel my order?
+          <span class="faq-chevron">&#9660;</span>
+        </button>
+        <div class="faq-a">You can cancel within <strong style="color:var(--sand)">24 hours of payment</strong> for a full refund — no questions asked. After that window, we begin ordering your custom sleeves and insert cards, which are non-refundable once production starts. If you need to cancel after 24 hours but before your design proof is approved, reach out immediately at hello@thekoakit.com and we'll do our best to minimize costs. Once the proof is approved and assembly begins, no refund is available.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What if a kit is lost or damaged in shipping?
+          <span class="faq-chevron">&#9660;</span>
+        </button>
+        <div class="faq-a">Every kit ships with full tracking via FedEx or UPS. If a kit is lost in transit or arrives damaged, we'll reship it at no additional cost. We photograph proof of shipment for every campaign. Just email us with the tracking details and we'll handle it within 24 hours.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can I make changes after submitting my campaign details?
+          <span class="faq-chevron">&#9660;</span>
+        </button>
+        <div class="faq-a">Yes — up until you approve the design proof, you can request changes to your card message, QR destination, or prospect list at no charge. Once the proof is approved, changes to printed materials may incur a reprinting fee. Changes to the prospect list (additions or swaps) are free if requested before assembly begins.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -767,7 +859,17 @@ h1{animation:fadeUp .55s .12s ease both}
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <a href="#top" class="logo">Koa <em>Kit</em></a>
+      <a href="#top" class="logo">
+        <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="19" stroke="#1D9E75" stroke-width="1.5" opacity="0.5"/>
+          <path d="M20 30 C20 30 12 24 12 17 C12 12.5 15.5 9 20 9 C24.5 9 28 12.5 28 17 C28 24 20 30 20 30Z" fill="#1D9E75" opacity="0.15"/>
+          <path d="M20 9 C20 9 20 22 20 30" stroke="#1D9E75" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M20 17 C20 17 15 14 13 10" stroke="#1D9E75" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+          <path d="M20 20 C20 20 25 17 27 13" stroke="#1D9E75" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+          <path d="M20 23 C20 23 16 21 14 18" stroke="#1D9E75" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+        </svg>
+        Koa <em>Kit</em>
+      </a>
       <p>Done-for-you physical gifting for marketing agencies and B2B SaaS. Premium Hawaiian macadamia kits sent to the desks that matter.</p>
       <a href="mailto:hello@thekoakit.com" class="footer-email">hello@thekoakit.com</a>
     </div>
