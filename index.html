@@ -104,10 +104,10 @@ section{padding:100px 0;border-top:1px solid var(--border)}
 .use-col-icon-t{background:var(--teal-l);border:1px solid var(--teal-b)}
 .use-col-icon-a{background:var(--amber-l);border:1px solid var(--amber-b)}
 .use-col-text{}
-.use-col-label{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px}
+.use-col-label{font-size:12px;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px}
 .use-col-label-t{color:var(--teal)}
 .use-col-label-a{color:var(--amber)}
-.use-col-title{font-family:var(--ff-d);font-size:17px;font-weight:500;color:var(--sand);letter-spacing:-0.01em;margin-bottom:3px}
+.use-col-title{font-family:var(--ff-d);font-size:23px;font-weight:500;color:var(--sand);letter-spacing:-0.01em;margin-bottom:4px}
 .use-col-desc{font-size:12px;color:var(--mid);font-weight:300;line-height:1.55}
 .use-col-link{font-size:11px;color:var(--teal);text-decoration:none;margin-top:6px;display:inline-flex;align-items:center;gap:4px;opacity:0.8;transition:opacity .15s}
 .use-col-link:hover{opacity:1}
@@ -351,7 +351,7 @@ h1{animation:fadeUp .55s .12s ease both}
         <div class="pulse-dot"></div>
         <span>30% meeting rate</span>
       </div>
-      <button class="nav-cta" onclick="openModal()">Get started</button>
+      <button class="nav-cta" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Get started</button>
     </div>
   </div>
 </nav>
@@ -370,7 +370,7 @@ h1{animation:fadeUp .55s .12s ease both}
         <h1>Your prospects ignore emails.<br>They <em>open</em> boxes.</h1>
         <p class="hero-sub">Premium Hawaiian macadamia nut kits sent to your exact prospects. They crack the nuts, scan a QR code, and watch your pitch — from the desk that ignored your last seven emails.</p>
         <div class="hero-actions">
-          <button class="btn-primary" onclick="openModal()">Build a campaign &rarr;</button>
+          <button class="btn-primary" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">See pricing &rarr;</button>
           <a href="#how" class="btn-ghost">See how it works</a>
         </div>
         <div class="hero-stats">
@@ -700,8 +700,8 @@ h1{animation:fadeUp .55s .12s ease both}
         <ul class="tier-features">
           <li>50 hand-assembled kits</li>
           <li>Full brand customization</li>
-          <li>Per-recipient personalisation</li>
-          <li>Personalised QR per recipient</li>
+          
+          <li>QR code links to your calendar or Loom</li>
           <li>Address research add-on available</li>
           <li>Delivery confirmation per desk</li>
         </ul>
@@ -714,7 +714,7 @@ h1{animation:fadeUp .55s .12s ease both}
         <ul class="tier-features">
           <li>Any quantity from 1 to 500</li>
           <li>All Core Campaign features</li>
-          <li>Volume pricing at 100+ kits</li>
+          <li>Volume pricing available for large campaigns</li>
           <li>Address research ($5/contact)</li>
           <li>Dedicated campaign build</li>
           <li>Priority turnaround</li>
@@ -840,7 +840,7 @@ h1{animation:fadeUp .55s .12s ease both}
     <h2 class="cta-title reveal">Stop sending emails<br>into the void.<br>Start <em>cracking</em> open desks.</h2>
     <p class="cta-sub reveal">Build a 15-kit Pilot in under five minutes. Or email us — we&rsquo;re happy to talk through your campaign before you commit.</p>
     <div class="cta-actions reveal">
-      <button class="btn-primary" onclick="openModal()">Build a campaign &rarr;</button>
+      <button class="btn-primary" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">See pricing &rarr;</button>
       <a href="mailto:hello@thekoakit.com" class="btn-ghost">Email us first</a>
     </div>
     <div class="cta-footnote reveal">Hand-assembled in Hawai&lsquo;i &middot; Stripe secured &middot; No subscriptions</div>
@@ -872,7 +872,7 @@ h1{animation:fadeUp .55s .12s ease both}
     </div>
   </div>
   <div class="footer-bottom">
-    <span>&copy; 2025 Koa Kit &middot; thekoakit.com</span>
+    <span>&copy; 2026 Koa Kit &middot; thekoakit.com</span>
     <div class="footer-stamp">
       <div class="stamp-dot"></div>
       <span>Big Island, Hawai&lsquo;i</span>
