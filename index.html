@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Koa Kit — B2B Gifting That Books Meetings</title>
 <meta name="description" content="Done-for-you Hawaiian macadamia gift kits sent to your exact prospects. 30% meeting booking rate vs 2% for cold email. Big Island, Hawaii.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,7 +33,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .eyebrow{font-family:var(--ff-b);font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal)}
 
 /* ─── NAV ─── */
-nav{position:sticky;top:0;z-index:200;background:rgba(12,12,10,0.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:60px;display:flex;align-items:center}
+nav{position:sticky;top:0;z-index:200;background:rgba(12,12,10,0.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:60px;display:flex;align-items:center;padding-top:env(safe-area-inset-top);height:calc(60px + env(safe-area-inset-top))}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:var(--max-w);margin:0 auto;padding:0 40px}
 .logo{text-decoration:none;display:flex;align-items:center;user-select:none}
 .logo-img{height:28px;width:auto;display:block}
