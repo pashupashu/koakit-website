@@ -1119,9 +1119,8 @@ function submitCampaign() {
   if (!name || !email || !company) { alert('Please fill in your name, company, and email.'); return; }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
 
-  const btn = document.querySelector('.modal-p');
-  btn.textContent = 'Sending…';
-  btn.disabled = true;
+  const btn = document.querySelector('[onclick="submitCampaign()"]');
+  if(btn){btn.textContent='Sending…';btn.disabled=true;}
 
   const qty   = document.getElementById('qtyInput') ? document.getElementById('qtyInput').value : '';
   const total = document.getElementById('cs-total') ? document.getElementById('cs-total').textContent : '';
@@ -1142,8 +1141,7 @@ function submitCampaign() {
   fetch('https://formspree.io/f/xvzykwwo', { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } })
     .then(() => { goStep(3); })
     .catch(() => {
-      btn.textContent = 'Submit reservation →';
-      btn.disabled = false;
+      if(btn){btn.textContent='Submit reservation →';btn.disabled=false;}
       alert('Something went wrong. Please email hello@thekoakit.com directly.');
     });
 }
