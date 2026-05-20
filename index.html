@@ -347,6 +347,18 @@ h1{animation:fadeUp .55s .12s ease both}
 <body>
 <div id="safe-top"></div>
 
+<!-- Netlify Forms detection (hidden) -->
+<form name="campaign-reservation" netlify netlify-honeypot="bot-field" hidden>
+  <input type="text" name="name">
+  <input type="text" name="company">
+  <input type="email" name="email">
+  <input type="text" name="package">
+  <input type="text" name="kits">
+  <input type="text" name="total">
+  <select name="campaign-type"><option>New Prospects</option><option>Existing Customers</option></select>
+  <textarea name="notes"></textarea>
+</form>
+
 <!-- ═══════════════ NAV ═══════════════ -->
 <nav>
   <div class="nav-inner">
@@ -472,7 +484,7 @@ h1{animation:fadeUp .55s .12s ease both}
         <div class="usp-icon">📈</div>
         <div class="usp-label">Conversion</div>
         <h3>30% book a call. Cold email gets 2%.</h3>
-        <p>A Hawaiian macadamia kit with a personalised QR code converts at 10× cold email rates — and warms every call before it happens.</p>
+        <p>A Hawaiian macadamia kit with a personalised QR code converts at 15× cold email rates — and warms every call before it happens.</p>
       </div>
       <div class="usp-card">
         <div class="usp-icon">⚡</div>
@@ -483,9 +495,9 @@ h1{animation:fadeUp .55s .12s ease both}
     </div>
     <div class="stat-bar reveal">
       <div class="stat-bar-item"><div class="sb-n">30%</div><div class="sb-l">Meeting booking rate</div></div>
-      <div class="stat-bar-item"><div class="sb-n">10×</div><div class="sb-l">vs cold email</div></div>
+      <div class="stat-bar-item"><div class="sb-n">15×</div><div class="sb-l">vs cold email</div></div>
       <div class="stat-bar-item"><div class="sb-n">$75</div><div class="sb-l">Flat per kit — no surprises</div></div>
-      <div class="stat-bar-item"><div class="sb-n">69%</div><div class="sb-l">Gross margin</div></div>
+      <div class="stat-bar-item"><div class="sb-n">6+ mo</div><div class="sb-l">Shelf life</div></div>
     </div>
   </div>
 </section>
@@ -564,7 +576,7 @@ h1{animation:fadeUp .55s .12s ease both}
         <div class="kit-attrs">
           <div class="kit-attr"><div class="kit-attr-dot"></div>Raw in-shell macadamia nuts &middot; 0.5 lb per kit</div>
           <div class="kit-attr"><div class="kit-attr-dot"></div>Grown pesticide free on the Big Island, Hawai&lsquo;i</div>
-          <div class="kit-attr"><div class="kit-attr-dot"></div>Walnut hardwood nut cracker — lives on the desk</div>
+          <div class="kit-attr"><div class="kit-attr-dot"></div>Wooden nut cracker — lives on the desk</div>
           <div class="kit-attr"><div class="kit-attr-dot"></div>Matte black rigid gift box with custom printed sleeve</div>
           <div class="kit-attr"><div class="kit-attr-dot"></div>Personalised insert card with QR &rarr; your Loom or landing page</div>
           <div class="kit-attr"><div class="kit-attr-dot"></div>6+ month shelf life — no refrigeration, ships anywhere in the US</div>
@@ -598,7 +610,7 @@ h1{animation:fadeUp .55s .12s ease both}
         <div class="product-card-body">
           <div class="product-card-label">The Cracker</div>
           <h4>Wooden nut cracker</h4>
-          <p>Walnut hardwood. Lives on the desk indefinitely — ambient brand visibility long after the nuts are gone.</p>
+          <p>Wooden nut cracker. Lives on the desk indefinitely — ambient brand visibility long after the nuts are gone.</p>
         </div>
       </div>
       <div class="product-card">
@@ -635,7 +647,7 @@ h1{animation:fadeUp .55s .12s ease both}
           <p>A Hawaiian macadamia kit lands on the desk of your exact target. Your message, your QR, your Loom. They open. They scan. They book. Your SDR team follows up while the gift is still warm.</p>
           <div class="who-stats">
             <div class="who-stat"><div class="who-stat-n">30%</div><div class="who-stat-l">Book a meeting</div></div>
-            <div class="who-stat"><div class="who-stat-n">10×</div><div class="who-stat-l">vs cold email</div></div>
+            <div class="who-stat"><div class="who-stat-n">15×</div><div class="who-stat-l">vs cold email</div></div>
             <div class="who-stat"><div class="who-stat-n">$75</div><div class="who-stat-l">Per booked desk</div></div>
           </div>
           <p style="font-size:13px;color:var(--mid);font-weight:300">Best for: Marketing agencies, SaaS sales teams, BDRs running ABM campaigns, founders doing outbound.</p>
@@ -798,7 +810,7 @@ h1{animation:fadeUp .55s .12s ease both}
           What's actually in the box?
           <span class="faq-chevron">&#9660;</span>
         </button>
-        <div class="faq-a">A kraft bag with 0.5 lb of in-shell Hawaiian macadamia nuts (grown pesticide free on the Big Island), a walnut hardwood nut cracker, a matte black rigid gift box with your custom printed sleeve, and a cream insert card with the recipient's first name and a QR code pointing to your Loom or landing page.</div>
+        <div class="faq-a">A kraft bag with 0.5 lb of in-shell Hawaiian macadamia nuts (grown pesticide free on the Big Island), a wooden nut cracker, a matte black rigid gift box with your custom printed sleeve, and a cream insert card with the recipient's first name and a QR code pointing to your Loom or landing page.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
@@ -1063,17 +1075,34 @@ function submitCampaign() {
   if (!name || !email || !company) { alert('Please fill in your name, company, and email.'); return; }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
 
-  // Build mailto as fallback (replace with Formspree/Netlify Forms in production)
-  const qty   = document.getElementById('qtyInput').value;
-  const total = document.getElementById('cs-total').textContent;
+  const btn = document.querySelector('.modal-p');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+
+  const qty   = document.getElementById('qtyInput') ? document.getElementById('qtyInput').value : '';
+  const total = document.getElementById('cs-total') ? document.getElementById('cs-total').textContent : '';
   const type  = document.getElementById('m-type').value;
   const notes = document.getElementById('m-notes').value;
+  const pkg   = document.getElementById('ms-tier') ? document.getElementById('ms-tier').textContent : '';
 
-  const body = encodeURIComponent(
-    `New Koa Kit campaign reservation\n\nName: ${name}\nCompany: ${company}\nEmail: ${email}\nCampaign type: ${type}\nKits: ${qty}\nTotal: ${total}\nNotes: ${notes || 'None'}`
-  );
-  window.location.href = `mailto:hello@thekoakit.com?subject=Campaign reservation — ${name} @ ${company}&body=${body}`;
-  goStep(3);
+  const formData = new FormData();
+  formData.append('form-name', 'campaign-reservation');
+  formData.append('name', name);
+  formData.append('company', company);
+  formData.append('email', email);
+  formData.append('package', pkg);
+  formData.append('kits', qty);
+  formData.append('total', total);
+  formData.append('campaign-type', type);
+  formData.append('notes', notes || 'None');
+
+  fetch('/', { method: 'POST', body: formData })
+    .then(() => { goStep(3); })
+    .catch(() => {
+      btn.textContent = 'Submit reservation →';
+      btn.disabled = false;
+      alert('Something went wrong. Please email hello@thekoakit.com directly.');
+    });
 }
 
 /* ─── SCROLL REVEAL ─── */
