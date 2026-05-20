@@ -347,18 +347,6 @@ h1{animation:fadeUp .55s .12s ease both}
 <body>
 <div id="safe-top"></div>
 
-<!-- Netlify Forms detection (hidden) -->
-<form name="campaign-reservation" netlify netlify-honeypot="bot-field" hidden>
-  <input type="text" name="name">
-  <input type="text" name="company">
-  <input type="email" name="email">
-  <input type="text" name="package">
-  <input type="text" name="kits">
-  <input type="text" name="total">
-  <select name="campaign-type"><option>New Prospects</option><option>Existing Customers</option></select>
-  <textarea name="notes"></textarea>
-</form>
-
 <!-- ═══════════════ NAV ═══════════════ -->
 <nav>
   <div class="nav-inner">
@@ -1086,7 +1074,6 @@ function submitCampaign() {
   const pkg   = document.getElementById('ms-tier') ? document.getElementById('ms-tier').textContent : '';
 
   const formData = new FormData();
-  formData.append('form-name', 'campaign-reservation');
   formData.append('name', name);
   formData.append('company', company);
   formData.append('email', email);
@@ -1096,7 +1083,7 @@ function submitCampaign() {
   formData.append('campaign-type', type);
   formData.append('notes', notes || 'None');
 
-  fetch('/', { method: 'POST', body: formData })
+  fetch('https://formspree.io/f/xvzykwwo', { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } })
     .then(() => { goStep(3); })
     .catch(() => {
       btn.textContent = 'Submit reservation →';
